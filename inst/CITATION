@@ -1,8 +1,7 @@
 citEntry(entry = "article",
          title = "Uncertainty-aware quantitative analysis of high-throughput 
          live cell migration data",
-         author = "Kitanovsk S, Conroy S, Sonneck J, Claas L, Dorsch M, Urban S, 
-         Chen J, Kaiser M, Grüner B, and Hoffmann D",
+         author = "Kitanovsk S, et al.",
          year = 2026,
          journal = "PLOS Computational Biology",
          doi = "10.1371/journal.pcbi.1014472",
