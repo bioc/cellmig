@@ -41,6 +41,9 @@ gen_full <- function(control = list(N_biorep = 3,
     # get meta
     meta <- get_meta_control(control = control)
     
+    # rename offset -> offset_group
+    control$offset_group <- control$offset
+    
     # sample
     s <- sampling(object = stanmodels$gen_F, algorithm = "Fixed_param", 
                   chains = 1, iter = control$N_cell+10, warmup = 10, 

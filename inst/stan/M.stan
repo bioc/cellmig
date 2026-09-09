@@ -9,7 +9,7 @@ data {
   array [N_well] int plate_id;          // well ID
   array [N_well] int plate_group_id;    // plate group ID
   array [N_plate_group] int group_id;   // group ID: treatment x dose
-  array [N_well] int offset;            // offset = 1 (use for batch correction)
+  array [N_well] int offset_group;      // offset_group = 1 (for batch correct)
   // priors
   real prior_alpha_p_M;         // prior mean of alpha_p
   real prior_alpha_p_SD;        // prior SD of alpha_p
@@ -51,7 +51,7 @@ transformed parameters {
   delta_t = sigma_delta * z_4;
   delta_tp = delta_t[group_id] + sigma_bio * z_2;
   for(w in 1:N_well) {
-    if(offset[w]==1) {
+    if(offset_group[w]==1) {
       mu_well[w] = alpha_p[plate_id[w]] + sigma_tech * z_1[w];
     } else {
       mu_well[w] = alpha_p[plate_id[w]] + delta_tp[plate_group_id[w]] + sigma_tech * z_1[w];

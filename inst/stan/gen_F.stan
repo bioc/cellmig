@@ -2,7 +2,7 @@ data {
     int<lower=0> N_plate;           // number of plates
     int<lower=0> N_group;           // number groups
     int<lower=0> N_well_reps;       // number groups
-    int offset;
+    int offset_group;
     // priors
     real prior_alpha_p_M;              // prior mean of alpha_p
     real prior_alpha_p_SD;             // prior SD of alpha_p
@@ -63,10 +63,10 @@ generated quantities {
       delta_tp[g][p] = normal_rng(delta_t[g], sigma_bio);
       
       for(w in 1:N_well_reps) {
-        if(g==offset) {
+        if(g==offset_group) {
           mu_well[well_id] = normal_rng(alpha_p[p], sigma_tech);
         }
-        if(g!=offset) {
+        if(g!=offset_group) {
           mu_well[well_id] = normal_rng(alpha_p[p] + delta_tp[g][p], sigma_tech);
         }
         kappa[well_id] = exp(normal_rng(kappa_mu, kappa_sigma));

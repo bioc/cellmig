@@ -29,6 +29,7 @@ get_fit <- function(x, control) {
                   plate_id=x$map_w$plate_id,
                   plate_group_id=x$map_w$plate_group_id,
                   offset=x$map_w$offset,
+                  offset_group=x$map_w$offset,
                   group_id=x$map_pg$group_id,
                   prior_alpha_p_M=control$prior_alpha_p_M,
                   prior_alpha_p_SD=control$prior_alpha_p_SD,
