@@ -30,7 +30,7 @@ model {}
 
 generated quantities {
   array [N_well] real y;
-  vector [N_plate] delta_tp [N_group];
+  array[N_group] vector[N_plate] delta_tp;
   vector<lower=0> [N_well] kappa;
   vector<lower=0> [N_well] mu;
   vector [N_well] mu_well;
