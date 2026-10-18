@@ -5,11 +5,11 @@ data {
   int<lower=0> N_plate_group;   // number of plate groups of wells
   int<lower=0> N_group;         // number groups
   vector[N] y;                  // cell velocity for N cells
-  int well_id [N];              // well ID
-  int plate_id [N_well];        // plate ID
-  int plate_group_id [N_well];  // plate group ID
-  int group_id [N_plate_group]; // group ID: treatment x dose
-  int offset [N_well];          // offset = 1 (use for batch correction)
+  array [N] int well_id;                // well ID
+  array [N_well] int plate_id;          // well ID
+  array [N_well] int plate_group_id;    // plate group ID
+  array [N_plate_group] int group_id;   // group ID: treatment x dose
+  array [N_well] int offset_group;      // offset_group = 1 (for batch correct)
   // priors
   real prior_alpha_p_M;         // prior mean of alpha_p
   real prior_alpha_p_SD;        // prior SD of alpha_p
@@ -51,7 +51,7 @@ transformed parameters {
   delta_t = sigma_delta * z_4;
   delta_tp = delta_t[group_id] + sigma_bio * z_2;
   for(w in 1:N_well) {
-    if(offset[w]==1) {
+    if(offset_group[w]==1) {
       mu_well[w] = alpha_p[plate_id[w]] + sigma_tech * z_1[w];
     } else {
       mu_well[w] = alpha_p[plate_id[w]] + delta_tp[plate_group_id[w]] + sigma_tech * z_1[w];
@@ -80,9 +80,8 @@ model {
 }
 
 generated quantities {
-  real y_hat_sample [N_well];
-  real log_lik [N];
-
+  array [N_well] real y_hat_sample;
+  array [N] real log_lik;
   y_hat_sample = gamma_rng(kappa, kappa ./ mu);
   for(i in 1:N) {
     log_lik[i] = gamma_lpdf(y[i] | kappa[well_id[i]], kappa[well_id[i]] ./ mu[well_id[i]]);
