@@ -1,7 +1,18 @@
 bibentry(
   bibtype = "Article",
   title = "Uncertainty-aware quantitative analysis of high-throughput live cell migration data",
-  author = "Kitanovski, Simo and others",
+  author = c(
+    person("Simo", "Kitanovski"),
+    person("Shannon", "Conroy"),
+    person("Justin", "Sonneck"),
+    person("Lukas", "Claas"),
+    person("Madeleine", "Dorsch"),
+    person("Sebastian", "Urban"),
+    person("Jianxu", "Chen"),
+    person("Markus", "Kaiser"),
+    person("Barbara M", "Grüner"),
+    person("Daniel", "Hoffmann")
+  ),
   year = "2026",
   journal = "PLOS Computational Biology",
   volume = "22",
