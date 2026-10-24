@@ -6,7 +6,7 @@ output:
   BiocStyle::html_document
 vignette: >
   %\VignetteEncoding{UTF-8}
-  %\VignetteIndexEntry{User Manual: cellmig}
+  %\VignetteIndexEntry{User Manual: Introduction}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
   markdown: 
